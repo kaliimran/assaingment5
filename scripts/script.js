@@ -37,12 +37,15 @@ for(let i = 0; show.length> i; i++){
         const priceString = document.getElementsByClassName('priceTag');
         let seatPriceTotal = 0;
         for(let i = 0; i < priceString.length; i++){
-            console.log(typeof priceString[i].innerText);
             const priceValue = priceString[i].innerText;
             const price1 = parseFloat(priceValue);
             seatPriceTotal = seatPriceTotal + price1;
         }
         totalTagInput.innerText = seatPriceTotal;
+
+        const grandTotalInput = document.getElementById('GrandTag');
+
+        grandTotalInput.innerText = seatPriceTotal;
 
     })
 }
