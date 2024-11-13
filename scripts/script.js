@@ -1,8 +1,4 @@
-/* const show = document.getElementById('class');
-show.addEventListener('click', function change(){
-    this.style.backgroundColor = '#1DD100';
-    this.style.color = 'white'
-}); */
+
 
 const show = document.getElementsByClassName('find');
 for(let i = 0; show.length> i; i++){
@@ -32,8 +28,7 @@ for(let i = 0; show.length> i; i++){
 
         /* Price Tag Calculate */
         const totalTagInput = document.getElementById('totalTag');
-        const totalTagText = totalTagInput.innerText;
-        const totalTag = parseFloat(totalTagText);
+
         const priceString = document.getElementsByClassName('priceTag');
         let seatPriceTotal = 0;
         for(let i = 0; i < priceString.length; i++){
@@ -42,20 +37,48 @@ for(let i = 0; show.length> i; i++){
             seatPriceTotal = seatPriceTotal + price1;
         }
         totalTagInput.innerText = seatPriceTotal;
-
         const grandTotalInput = document.getElementById('GrandTag');
-
         grandTotalInput.innerText = seatPriceTotal;
+
+        for(let i = 0; i < priceString.length; i++){
+            const applyBtn = document.getElementById('applyBtn');
+            if(priceString.length >= 4){
+                applyBtn.disabled = false;
+                applyBtn.addEventListener('click', applyFunction)
+            }
+            else{
+                applyBtn.disabled = true;
+            }
+        }
+
+
 
     })
 }
 
-/* function showing(){
-    this.style.backgroundColor = '#1DD100'
-    this.style.color = 'white';
-    const detailsShow = document.getElementById('purchaseInfo');
-    const h1 = document.createElement('h1');
-    // h1.innerText = show[i];
-    console.log(show[i])
-} */
+
+function applyFunction(){
+    const applyFieldInput = document.getElementById('applyField');
+    const applyField = applyFieldInput.value;
+
+    const grandTotalInput = document.getElementById('GrandTag');
+
+    const totalTagInput = document.getElementById('totalTag');
+    const totalTagText = totalTagInput.innerText;
+    const totalTag = parseFloat(totalTagText);
+
+    if(applyField === 'NEW15'){
+        const totalTagPer = totalTag * .15;
+        const result = totalTag - totalTagPer;
+        grandTotalInput.innerText = result
+    }
+    else if(applyField === 'Couple 20'){
+        const totalTagPer = totalTag * .20;
+        const result = totalTag - totalTagPer;
+        grandTotalInput.innerText = result
+    }
+    else{
+        alert('Invalid Coupon code')
+    }
+}
 
